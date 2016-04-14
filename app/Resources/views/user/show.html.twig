@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ pageTitle }}
+{% endblock %}
+
+{% block body %}
+<div class="sm-user-crud">
+
+    <h1>User</h1>
+
+    <div class="table-responsive">
+        <table class="table table-reflow">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ user.id }}</td>
+                </tr>
+                <tr>
+                    <th>Username</th>
+                    <td>{{ user.username }}</td>
+                </tr>
+                {# <tr>
+                    <th>Usernamecanonical</th>
+                    <td>{{ user.usernameCanonical }}</td>
+                </tr> #}
+                <tr>
+                    <th>Email</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                {# <tr>
+                    <th>Emailcanonical</th>
+                    <td>{{ user.emailCanonical }}</td>
+                </tr> #}
+                <tr>
+                    <th>Enabled</th>
+                    <td>{% if user.enabled %}Yes{% else %}No{% endif %}</td>
+                </tr>
+                {# <tr>
+                    <th>Salt</th>
+                    <td>{{ user.salt }}</td>
+                </tr>
+                <tr>
+                    <th>Password</th>
+                    <td>{{ user.password }}</td>
+                </tr>
+                <tr>
+                    <th>Lastlogin</th>
+                    <td>{% if user.lastLogin %}{{ user.lastLogin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                </tr> #}
+                <tr>
+                    <th>Locked</th>
+                    <td>{% if user.locked %}Yes{% else %}No{% endif %}</td>
+                </tr>
+                {# <tr>
+                    <th>Expired</th>
+                    <td>{% if user.expired %}Yes{% else %}No{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Expiresat</th>
+                    <td>{% if user.expiresAt %}{{ user.expiresAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Confirmationtoken</th>
+                    <td>{{ user.confirmationToken }}</td>
+                </tr>
+                <tr>
+                    <th>Passwordrequestedat</th>
+                    <td>{% if user.passwordRequestedAt %}{{ user.passwordRequestedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                </tr> #}
+                <tr>
+                    <th>Roles</th>
+                    <td>
+                        <ul class="list-unstyled">
+                            {% for role in user.roles %}
+                                <li>
+                                    {{ role|e }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                {# <tr>
+                    <th>Credentialsexpired</th>
+                    <td>{% if user.credentialsExpired %}Yes{% else %}No{% endif %}</td>
+                </tr>
+                <tr>
+                    <th>Credentialsexpireat</th>
+                    <td>{% if user.credentialsExpireAt %}{{ user.credentialsExpireAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                </tr> #}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{ path('user_index') }}" class="btn btn-link">
+        Back to the list
+    </a>
+    <span><strong>|</strong></span>
+    <a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-link">
+        Edit
+    </a>
+
+    <div class="delete-button">
+        {{ form_start(delete_form) }}
+            <input type="submit" value="Delete" class="btn btn-danger">
+        {{ form_end(delete_form) }}
+    </div>
+
+</div>
+{% endblock %}

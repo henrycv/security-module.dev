@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="sm-user-crud">
+    <h1>Page</h1>
+
+    <div class="table-responsive">
+        <table class="table table-reflow">
+            <tbody>
+                <tr>
+                    <th>Idpage</th>
+                    <td>{{ page.idPage }}</td>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ page.name }}</td>
+                </tr>
+                <tr>
+                    <th>Pageparentid</th>
+                    <td>{{ page.pageParentId }}</td>
+                </tr>
+                <tr>
+                    <th>URL</th>
+                    <td>{{ page.url }}</td>
+                </tr>
+                <tr>
+                    <th>Route Name</th>
+                    <td>{{ page.routeName }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <a href="{{ path('page_index') }}">Back to the list</a>
+    <span><strong>|</strong></span>
+    <a href="{{ path('page_edit', { 'id': page.idPage }) }}">Edit</a>
+
+    <div class="delete-button">
+        {{ form_start(delete_form) }}
+            <input type="submit" value="Delete" class="btn btn-danger">
+        {{ form_end(delete_form) }}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ pageTitle }}
+{% endblock %}
+
+{% block body %}
+<div class="sm-user-crud">
+    <h1>{{ 'profile.edit.submit'|trans }}</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" class="btn btn-primary">
+        <a href="{{ path('user_index') }}" class="btn btn-link">
+            Back to the the list
+        </a>
+    {{ form_end(edit_form) }}
+    <div class="delete-button">
+        {{ form_start(delete_form) }}
+            <input type="submit" value="Delete" class="btn btn-danger">
+        {{ form_end(delete_form) }}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            userRolesPreSelections('{{ userRolesData | raw }}');
+        });
+    </script>
+{% endblock %}

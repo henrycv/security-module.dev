@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ pageTitle }}
+{% endblock %}
+
+{% block body %}
+
+<div class="sm-user-crud">
+  <h1>Users</h1>
+
+  <div class="table-responsive">
+      <table class="table table-reflow">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Username</th>
+            <th class="hide-by-responsive">{{ 'profile.show.email'|trans }}</th>
+            <th class="hide-by-responsive">Enabled</th>
+            <th class="hide-by-responsive">Locked</th>
+            <th class="hide-by-responsive">Roles</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for user in users %}
+          <tr>
+            <th scope="row">{{ user.id }}</th>
+            <td>{{ user.username }}</td>
+            <td class="hide-by-responsive">{{ user.email }}</td>
+            <td class="hide-by-responsive">{% if user.enabled %}Yes{% else %}No{% endif %}</td>
+            <td class="hide-by-responsive">{% if user.locked %}Yes{% else %}No{% endif %}</td>
+            <td class="hide-by-responsive">{# {{ user.roles }} #}</td>
+            <td>
+              <div class="item-actions">
+                  <a href="{{ path('user_show', { 'id': user.id }) }}" class="btn btn-sm btn-default">
+                      Show
+                  </a>
+                  <a href="{{ path('user_edit', { 'id': user.id }) }}" class="btn btn-sm btn-primary">
+                      <i class="fa fa-edit"></i> Edit
+                  </a>
+                  {# <a href="{{ path('user_delete', { 'id': user.id }) }}" class="btn btn-sm btn-danger">
+                      <i class="fa fa-edit"></i> Delete
+                  </a> #}
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  </div>
+
+  <div class="section actions">
+      <a href="{{ path('user_new') }}" class="btn btn-lg btn-success">
+          <i class="fa fa-plus"></i> Create a new User
+      </a>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="sm-user-crud">
+    <h1>{{ 'resetting.reset.submit'|trans }}</h1>
+    {{ form_start(form, { 'action': path('fos_user_resetting_reset', {'token': token}), 'attr': { 'class': 'fos_user_resetting_reset' } }) }}
+        {{ form_widget(form) }}
+        div class="delete-button">
+            <input type="submit" value="{{ 'resetting.reset.submit'|trans }}" class="btn btn-primary" />
+            <a href="{{ path('fos_user_profile_show') }}" class="btn btn-link">
+                {{ 'registration.back'|trans }}
+            </a>
+        </div>
+    {{ form_end(form) }}
+</div>
+

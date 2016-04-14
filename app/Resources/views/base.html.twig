@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Security Module - Mercel{% endblock %}</title>
+
+        {% stylesheets filter="scssphp" output="css/app.css"
+            "@sm_required_css"
+            "@AppBundle/Resources/assets/css/login.css"
+            "@AppBundle/Resources/assets/css/menu.css"
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
+        {# <link rel="icon" type="image/x-icon" href="{{ asset('css/app.css') }}" /> #}
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+
+        {% block header %}
+
+        <div id="ms-menu-container">
+            <header>
+                <div id='cssmenu'>
+                   <ul></ul>
+                </div>
+            </header>
+        </div>
+
+        {% endblock %}
+
+        {% block body %}{% endblock %}
+
+        {% javascripts filter="?jsqueeze" output="js/app.js"
+            "@sm_required_js"
+            "@AppBundle/Resources/assets/js/login.js"
+            "@AppBundle/Resources/assets/js/menu.js"
+        %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
+        {% block javascripts %}
+            {#
+            <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+             #}
+
+            <script type="text/javascript">var menuItems = $.parseJSON('{% render controller("AppBundle:Default:menu") | raw %}');</script>
+        {% endblock %}
+
+    </body>
+</html>

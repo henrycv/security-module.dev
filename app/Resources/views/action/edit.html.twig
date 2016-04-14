@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="sm-user-crud">
+    <h1>Action edit</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" class="btn btn-primary" />
+        <a href="{{ path('action_index') }}" class="btn btn-link">
+            Back to the list
+        </a>
+    {{ form_end(edit_form) }}
+
+    <div class="delete-button">
+        {{ form_start(delete_form) }}
+            <input type="submit" value="Delete" class="btn btn-danger">
+        {{ form_end(delete_form) }}
+    </div>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+        $( document ).ready(function() {
+            actionRolesPreSelections('{{ rolesToActionData | raw }}');
+        });
+    </script>
+{% endblock %}
