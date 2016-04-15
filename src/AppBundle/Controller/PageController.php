@@ -236,7 +236,8 @@ class PageController extends Controller
             ->getRepository('AppBundle:Page')
             ->findAllByUser(
                 $this->get('security.token_storage')->getToken()->getUser(),
-                $this->container->get('router')
+                $this->container->get('router'),
+                $request
             );
 
         if ($pages) {
