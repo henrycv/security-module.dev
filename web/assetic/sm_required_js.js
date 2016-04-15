@@ -2391,8 +2391,11 @@ function pagePageParentPreSelections(pageParentId, pageId)
     ddlOption = $("#page_pageParentId option[value='" + pageParentId + "']").prop('selected', true);
 }
 
-function addPageParentDefault(selected)
+function actionRolesPreSelections(actionsToPageData)
 {
-    // $("#page_pageParentId").prepend( "<option value=\"0\">(No Parent Page)</option>")
-    //     .prop('selected', (selected || false));
+    var actionsToPageData = JSON.parse(actionsToPageData);
+    var i, userRole, ddlOption;
+    for (i = 0; i < actionsToPageData.length; i++) {
+        ddlOption = $("#action_roles option[value='" + actionsToPageData[i].roleId + "']").prop('selected', true);
+    }
 }
