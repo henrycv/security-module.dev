@@ -6,8 +6,8 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    app_locales: en|fr|de|es|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca
-    locale: en
+    app_locales: es|en|fr|de|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca
+    locale: es
 
 framework:
     #esi:             ~

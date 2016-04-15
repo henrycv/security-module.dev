@@ -85,7 +85,8 @@ class RedirectToPreferredLocaleListener
         $request = $event->getRequest();
 
         // Set the translator to FOSUserBundle Login
-        $this->translator->setLocale($request->getSession()->get('_locale'));
+        $requestLocale = $request->getLocale();
+        $this->translator->setLocale($requestLocale ? $requestLocale : $request->getSession()->get('_locale'));
 
         // Ignore sub-requests and all URLs but the homepage
         if (!$event->isMasterRequest() || '/' !== $request->getPathInfo()) {
@@ -94,11 +95,15 @@ class RedirectToPreferredLocaleListener
         // Ignore requests from referrers with the same HTTP host in order to prevent
         // changing language for users who possibly already selected it for this application.
         if (0 === stripos($request->headers->get('referer'), $request->getSchemeAndHttpHost())) {
-            return;
+            // return;
         }
 
-        $preferredLanguage = $request->getPreferredLanguage($this->locales);
-
+        $languageOnSession = $request->getSession()->get('_locale');
+        if ($languageOnSession) {
+            $preferredLanguage = $languageOnSession;
+        } else {
+            $preferredLanguage = $request->getPreferredLanguage($this->locales);
+        }
 
         if ($preferredLanguage !== $this->defaultLocale) {
             $response = new RedirectResponse($this->urlGenerator->generate('homepage', array('_locale' => $preferredLanguage)));
