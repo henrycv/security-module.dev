@@ -2,17 +2,17 @@
 
 {% block body %}
 <div class="sm-user-crud">
-    <h1>Role</h1>
+    <h1>{{ 'roles'|trans({},'messages') }}</h1>
 
     <div class="table-responsive">
         <table class="table table-reflow">
             <tbody>
                 <tr>
-                    <th>Idrole</th>
+                    <th>{{ 'id'|trans({},'messages') }}</th>
                     <td>{{ role.idRole }}</td>
                 </tr>
                 <tr>
-                    <th>Name</th>
+                    <th>{{ 'name'|trans({},'messages') }}</th>
                     <td>{{ role.name }}</td>
                 </tr>
             </tbody>
@@ -20,16 +20,16 @@
     </div>
 
     <a href="{{ path('role_index') }}">
-        Back to the list
+        {{ 'back_to_list'|trans({},'messages') }}
     </a>
     <span><strong>|</strong></span>
     <a href="{{ path('role_edit', { 'id': role.idRole }) }}" class="btn btn-link">
-        Edit
+        {{ 'edit'|trans({},'messages') }}
     </a>
 
     <div class="delete-button">
         {{ form_start(delete_form) }}
-            <input type="submit" value="Delete" class="btn btn-danger">
+            <input type="submit" value="{{ 'delete'|trans({},'messages') }}" class="btn btn-danger">
         {{ form_end(delete_form) }}
     </div>
 </div>

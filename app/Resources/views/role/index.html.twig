@@ -2,15 +2,15 @@
 
 {% block body %}
 <div class="sm-user-crud">
-    <h1>Role list</h1>
+    <h1>{{ 'roles'|trans({},'messages') }}</h1>
 
   <div class="table-responsive">
       <table class="table table-reflow">
             <thead>
                 <tr>
-                    <th class="hide-by-responsive">Idrole</th>
-                    <th>Name</th>
-                    <th>Actions</th>
+                    <th class="hide-by-responsive">{{ 'id'|trans({},'messages') }}</th>
+                    <th>{{ 'name'|trans({},'messages') }}</th>
+                    <th>{{ 'actions'|trans({},'messages') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,8 +20,8 @@
                     <td>{{ role.name }}</td>
                     <td>
                         <div class="item-actions">
-                                <a href="{{ path('role_show', { 'id': role.id_role }) }}" class="btn btn-sm btn-default">show</a>
-                                <a href="{{ path('role_edit', { 'id': role.id_role }) }}" class="btn btn-sm btn-primary">edit</a>
+                                <a href="{{ path('role_show', { 'id': role.id_role }) }}" class="btn btn-sm btn-default">{{ 'show'|trans({},'messages') }}</a>
+                                <a href="{{ path('role_edit', { 'id': role.id_role }) }}" class="btn btn-sm btn-primary">{{ 'edit'|trans({},'messages') }}</a>
                         </div>
                     </td>
                 </tr>
@@ -32,7 +32,7 @@
 
     <div class="section actions">
             <a href="{{ path('role_new') }}" class="btn btn-lg btn-success">
-                <i class="fa fa-plus"></i>Create a new entry
+                <i class="fa fa-plus"></i> {{ 'create_new'|trans({},'messages') }} {{ 'role'|trans({},'messages') }}
             </a>
       </div>
 </div>

@@ -1,23 +1,25 @@
 {% extends 'base.html.twig' %}
 
+{% trans_default_domain 'FOSUserBundle' %}
+
 {% block title %}
     {{ pageTitle }}
 {% endblock %}
 
 {% block body %}
 <div class="sm-user-crud">
-    <h1>{{ 'profile.edit.submit'|trans }}</h1>
+    <h1>{{ 'user'|trans({},'messages') }}</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" class="btn btn-primary">
+        <input type="submit" value="{{ 'edit'|trans({},'messages') }}" class="btn btn-primary">
         <a href="{{ path('user_index') }}" class="btn btn-link">
-            Back to the the list
+            {{ 'back_to_list'|trans({},'messages') }}
         </a>
     {{ form_end(edit_form) }}
     <div class="delete-button">
         {{ form_start(delete_form) }}
-            <input type="submit" value="Delete" class="btn btn-danger">
+            <input type="submit" value="{{ 'delete'|trans({},'messages') }}" class="btn btn-danger">
         {{ form_end(delete_form) }}
     </div>
 </div>
