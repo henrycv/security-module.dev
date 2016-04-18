@@ -26,6 +26,21 @@
                 <div id='cssmenu'>
                    <ul></ul>
                 </div>
+
+                <div id="container-dropdown-language" class="hide">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        {{ localeByCode(app.request.locale) }}
+                    </a>
+                    <ul class="locales">
+                        {% for locale in locales() %}
+                            <li {% if app.request.locale == locale.code %}class="active"{% endif %}>
+                                <a href="{{ path(app.request.get('_route', 'homepage'), app.request.get('_route_params', [])|merge({ _locale: locale.code })) }}">
+                                    {{ locale.name|capitalize }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </header>
         </div>
 

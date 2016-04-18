@@ -319,7 +319,7 @@
             </trans-unit>
 
 
-
+            <!-- BEGIN - Security Module -->
             <trans-unit id="user">
                 <source>user</source>
                 <target>User</target>
@@ -389,6 +389,8 @@
                 <source>back_to_list</source>
                 <target>Back to list</target>
             </trans-unit>
+            <!-- END - Security Module -->
+
         </body>
     </file>
 </xliff>

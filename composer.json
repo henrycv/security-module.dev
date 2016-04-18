@@ -25,6 +25,7 @@
         "twbs/bootstrap": "^3.3",
         "symfony/assetic-bundle": "^2.8",
         "leafo/scssphp": "^0.4.0",
+        "twig/extensions"                      : "~1.2",
         "patchwork/jsqueeze": "~1.0"
     },
     "require-dev": {

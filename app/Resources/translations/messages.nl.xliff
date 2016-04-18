@@ -260,6 +260,80 @@
                 <source>label.delete_post</source>
                 <target>Verwijderen</target>
             </trans-unit>
+
+            <!-- BEGIN - Security Module -->
+            <trans-unit id="user">
+                <source>user</source>
+                <target>User</target>
+            </trans-unit>
+            <trans-unit id="users">
+                <source>users</source>
+                <target>Users</target>
+            </trans-unit>
+            <trans-unit id="role">
+                <source>role</source>
+                <target>Role</target>
+            </trans-unit>
+            <trans-unit id="roles">
+                <source>roles</source>
+                <target>Roles</target>
+            </trans-unit>
+            <trans-unit id="yes">
+                <source>yes</source>
+                <target>Yes</target>
+            </trans-unit>
+            <trans-unit id="no">
+                <source>no</source>
+                <target>No</target>
+            </trans-unit>
+
+            <trans-unit id="id">
+                <source>id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="name">
+                <source>name</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="status.enabled">
+                <source>status.enabled</source>
+                <target>Enabled</target>
+            </trans-unit>
+            <trans-unit id="status.locked">
+                <source>status.locked</source>
+                <target>Locked</target>
+            </trans-unit>
+            <trans-unit id="actions">
+                <source>actions</source>
+                <target>Actions</target>
+            </trans-unit>
+            <trans-unit id="show">
+                <source>show</source>
+                <target>Show</target>
+            </trans-unit>
+            <trans-unit id="create">
+                <source>create</source>
+                <target>Create</target>
+            </trans-unit>
+            <trans-unit id="edit">
+                <source>edit</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="delete">
+                <source>delete</source>
+                <target>Delete</target>
+            </trans-unit>
+            <trans-unit id="create_new">
+                <source>create_new</source>
+                <target>Create a new</target>
+            </trans-unit>
+            <trans-unit id="back_to_list">
+                <source>back_to_list</source>
+                <target>Back to list</target>
+            </trans-unit>
+            <!-- END - Security Module -->
+
+
         </body>
     </file>
 </xliff>

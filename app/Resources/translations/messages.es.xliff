@@ -309,6 +309,80 @@
                 <source>help.more_information</source>
                 <target><![CDATA[Para más información, consulta la <a href="http://symfony.com/doc">documentación de Symfony</a>.]]></target>
             </trans-unit>
+
+            <!-- BEGIN - Security Module -->
+            <trans-unit id="user">
+                <source>user</source>
+                <target>Usuario</target>
+            </trans-unit>
+            <trans-unit id="users">
+                <source>users</source>
+                <target>Usuarios</target>
+            </trans-unit>
+            <trans-unit id="role">
+                <source>role</source>
+                <target>Rol</target>
+            </trans-unit>
+            <trans-unit id="roles">
+                <source>roles</source>
+                <target>Roles</target>
+            </trans-unit>
+            <trans-unit id="yes">
+                <source>yes</source>
+                <target>Si</target>
+            </trans-unit>
+            <trans-unit id="no">
+                <source>no</source>
+                <target>No</target>
+            </trans-unit>
+
+            <trans-unit id="id">
+                <source>id</source>
+                <target>ID</target>
+            </trans-unit>
+            <trans-unit id="name">
+                <source>name</source>
+                <target>Nombre</target>
+            </trans-unit>
+            <trans-unit id="status.enabled">
+                <source>status.enabled</source>
+                <target>Habilitado</target>
+            </trans-unit>
+            <trans-unit id="status.locked">
+                <source>status.locked</source>
+                <target>Bloqueado</target>
+            </trans-unit>
+            <trans-unit id="actions">
+                <source>actions</source>
+                <target>Acciones</target>
+            </trans-unit>
+            <trans-unit id="show">
+                <source>show</source>
+                <target>Ver</target>
+            </trans-unit>
+            <trans-unit id="create">
+                <source>create</source>
+                <target>Crear</target>
+            </trans-unit>
+            <trans-unit id="edit">
+                <source>edit</source>
+                <target>Editar</target>
+            </trans-unit>
+            <trans-unit id="delete">
+                <source>delete</source>
+                <target>Borrar</target>
+            </trans-unit>
+            <trans-unit id="create_new">
+                <source>create_new</source>
+                <target>Crear un nuevo</target>
+            </trans-unit>
+            <trans-unit id="back_to_list">
+                <source>back_to_list</source>
+                <target>Regreasar a la lista</target>
+            </trans-unit>
+            <!-- END - Security Module -->
+
+
         </body>
     </file>
 </xliff>

@@ -48,6 +48,10 @@ RenderMenu.prototype.renderAllItems = function() {
             this.renderItem(container, this.items[i]);
         }
     }
+
+    // Add dropdown language item
+    $("#cssmenu > ul").append('<li class="has-sub language-dropdown">' +
+      $("#container-dropdown-language").detach().html() + '</li>');
 };
 
 
@@ -131,5 +135,6 @@ $( document ).ready(function() {
             $(this).siblings('ul').addClass('open').show();
           }
       });
+
   })(jQuery);
 });
