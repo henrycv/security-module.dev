@@ -75,7 +75,8 @@ class DefaultController extends Controller
             $hasPermission = false;
             foreach ($pages as $page) {
                 if (stripos($page['routeName'], $routeName) !== false
-                    || (strripos($page['url'] && strripos($page['url'], $request->getPathInfo()) !== false))
+                    || ($page['url']
+                        && strripos($page['url'], $request->getPathInfo()) !== false)
                 ) {
                     return $page;
                 }
