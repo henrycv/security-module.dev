@@ -18,8 +18,10 @@ class ActionType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class)
+            ->add('name', TextType::class, array(
+                'label' => 'name', 'translation_domain' => 'messages'))
             ->add('roles', EntityType::class, array(
+                'label' => 'roles', 'translation_domain' => 'messages',
                 'class' => 'AppBundle:Role',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('r')

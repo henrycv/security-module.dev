@@ -2,27 +2,35 @@
 
 {% block body %}
 <div class="sm-user-crud">
-    <h1>Page list</h1>
+    <h1>{{ 'pages'|trans({},'messages') }} - {{ 'listado'|trans({},'messages') }}</h1>
+
     <div class="table-responsive">
         <table class="table table-reflow">
             <thead>
                 <tr>
-                    <th>Idpage</th>
-                    <th>Name</th>
-                    <th class="hide-by-responsive">Pageparentid</th>
-                    <th>Actions</th>
+                    <th>{{ 'id'|trans({},'messages') }}</th>
+                    <th>{{ 'name'|trans({},'messages') }}</th>
+                    <th class="hide-by-responsive">{{ 'parent_page'|trans({},'messages') }}</th>
+                    <th>{{ 'actions'|trans({},'messages') }}</th>
                 </tr>
             </thead>
             <tbody>
             {% for page in pages %}
                 <tr>
-                    <td><a href="{{ path('page_show', { 'id': page.idPage }) }}">{{ page.idPage }}</a></td>
+                    <td>
+                        <a href="{{ path('page_show', { 'id': page.idPage }) }}">
+                            {{ page.idPage }}</a>
+                    </td>
                     <td>{{ page.name }}</td>
                     <td class="hide-by-responsive">{{ page.pageParentId }}</td>
                     <td>
                         <div class="item-actions">
-                            <a href="{{ path('page_show', { 'id': page.idPage }) }}" class="btn btn-sm btn-default">show</a>
-                            <a href="{{ path('page_edit', { 'id': page.idPage }) }}" class="btn btn-sm btn-primary">edit</a>
+                            <a href="{{ path('page_show', { 'id': page.idPage }) }}" class="btn btn-sm btn-default">
+                                {{ 'show'|trans({},'messages') }}
+                            </a>
+                            <a href="{{ path('page_edit', { 'id': page.idPage }) }}" class="btn btn-sm btn-primary">
+                                {{ 'edit'|trans({},'messages') }}
+                            </a>
                         </div>
                     </td>
                 </tr>
@@ -31,10 +39,9 @@
         </table>
     </div>
 
-
     <div class="section actions">
       <a href="{{ path('page_new') }}" class="btn btn-lg btn-success">
-          <i class="fa fa-plus"></i> Create a new entry
+        {{ 'create_new_alt'|trans({},'messages') }} {{ 'page'|trans({},'messages') }}
       </a>
     </div>
 </div>

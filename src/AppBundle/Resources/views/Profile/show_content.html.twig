@@ -6,7 +6,7 @@
     <table class="table table-reflow">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>{{ 'id'|trans({},'messages') }}</th>
                 <td>{{ user.id }}</td>
             </tr>
             <tr>
@@ -18,15 +18,15 @@
                 <td>{{ user.email }}</td>
             </tr>
             <tr>
-                <th>Enabled</th>
-                <td>{% if user.enabled %}Yes{% else %}No{% endif %}</td>
+                <th>{{ 'status.enabled'|trans({},'messages') }}</th>
+                <td>{% if user.enabled %}{{ 'yes'|trans({},'messages') }}{% else %}{{ 'no'|trans({},'messages') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Locked</th>
-                <td>{% if user.locked %}Yes{% else %}No{% endif %}</td>
+                <th>{{ 'status.locked'|trans({},'messages') }}</th>
+                <td>{% if user.locked %}{{ 'yes'|trans({},'messages') }}{% else %}{{ 'no'|trans({},'messages') }}{% endif %}</td>
             </tr>
             <tr>
-                <th>Roles</th>
+                <th>{{ 'roles'|trans({},'messages') }}</th>
                 <td>
                     <ul class="list-unstyled">
                         {% for role in user.roles %}
@@ -43,9 +43,5 @@
 <div>
     <a href="{{ path('fos_user_profile_edit') }}" class="btn btn-link">
         {{ 'profile.edit.submit'|trans }}
-    </a>
-    <span><strong>|</strong></span>
-    <a href="{{ path('homepage') }}" class="btn btn-link">
-        Go to homepage
     </a>
 </div>

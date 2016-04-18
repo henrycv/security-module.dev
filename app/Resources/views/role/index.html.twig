@@ -2,7 +2,7 @@
 
 {% block body %}
 <div class="sm-user-crud">
-    <h1>{{ 'roles'|trans({},'messages') }}</h1>
+    <h1>{{ 'roles'|trans({},'messages') }} - {{ 'listado'|trans({},'messages') }}</h1>
 
   <div class="table-responsive">
       <table class="table table-reflow">
@@ -20,8 +20,12 @@
                     <td>{{ role.name }}</td>
                     <td>
                         <div class="item-actions">
-                                <a href="{{ path('role_show', { 'id': role.id_role }) }}" class="btn btn-sm btn-default">{{ 'show'|trans({},'messages') }}</a>
-                                <a href="{{ path('role_edit', { 'id': role.id_role }) }}" class="btn btn-sm btn-primary">{{ 'edit'|trans({},'messages') }}</a>
+                                <a href="{{ path('role_show', { 'id': role.id_role }) }}" class="btn btn-sm btn-default">
+                                    {{ 'show'|trans({},'messages') }}
+                                </a>
+                                <a href="{{ path('role_edit', { 'id': role.id_role }) }}" class="btn btn-sm btn-primary">
+                                    {{ 'edit'|trans({},'messages') }}
+                                </a>
                         </div>
                     </td>
                 </tr>

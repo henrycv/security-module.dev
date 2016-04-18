@@ -56,17 +56,16 @@ class PageRepository extends EntityRepository
                 $url = '';
                 $visible = ((integer) $page['visible'] === 1);
                 if ($visible) {
-                    $routHasParams = preg_match('/\{[^_locale]+\}/', $routes->get($page['route_name'])->getPattern());
-// var_dump([
-//     $routHasParams,
-//     preg_match('/\{[^_locale]+\}/', $routes->get($page['route_name'])->getPattern()),
-// ]);
-                    // If the route requires parameters and these are unknown, then the property is used URL of the page
-                    if ($routHasParams) {
-                        $url = $router->getContext()->getBaseUrl() . $request->getLocale() . $page['url'] . '#test';
-                    } else {
-                    // When the route does not require parameters then the "$router->generate(...)" is used
-                        $url = $router->generate($page['route_name']);
+                    if ($page['url']) {
+                        $url = $router->getContext()->getBaseUrl() . '/' . $request->getLocale() . $page['url'];
+                    } else if ($page['route_name']) {
+                        $pageRouteName = $routes->get($page['route_name']);
+                        if ($pageRouteName) {
+                            $routeHasParams = preg_match('/\{[^_locale]+\}/', $pageRouteName->getPattern());
+                            if (!$routeHasParams) {
+                                $url = $router->generate($page['route_name']);
+                            }
+                        }
                     }
                 }
                 $pages[] = array(

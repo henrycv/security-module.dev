@@ -2,42 +2,46 @@
 
 {% block body %}
 <div class="sm-user-crud">
-    <h1>Page</h1>
+    <h1>{{ 'page'|trans({},'messages') }} - {{ 'view'|trans({},'messages') }}</h1>
 
     <div class="table-responsive">
         <table class="table table-reflow">
             <tbody>
                 <tr>
-                    <th>Idpage</th>
+                    <th>{{ 'id'|trans({},'messages') }}</th>
                     <td>{{ page.idPage }}</td>
                 </tr>
                 <tr>
-                    <th>Name</th>
+                    <th>{{ 'name'|trans({},'messages') }}</th>
                     <td>{{ page.name }}</td>
                 </tr>
                 <tr>
-                    <th>Pageparentid</th>
+                    <th>{{ 'parent_page'|trans({},'messages') }}</th>
                     <td>{{ page.pageParentId }}</td>
                 </tr>
                 <tr>
-                    <th>URL</th>
+                    <th>{{ 'url'|trans({},'messages') }}</th>
                     <td>{{ page.url }}</td>
                 </tr>
                 <tr>
-                    <th>Route Name</th>
+                    <th>{{ 'router_name'|trans({},'messages') }}</th>
                     <td>{{ page.routeName }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <a href="{{ path('page_index') }}">Back to the list</a>
+    <a href="{{ path('page_index') }}">
+        {{ 'back_to_list'|trans({},'messages') }}
+    </a>
     <span><strong>|</strong></span>
-    <a href="{{ path('page_edit', { 'id': page.idPage }) }}">Edit</a>
+    <a href="{{ path('page_edit', { 'id': page.idPage }) }}">
+        {{ 'edit'|trans({},'messages') }}
+    </a>
 
     <div class="delete-button">
         {{ form_start(delete_form) }}
-            <input type="submit" value="Delete" class="btn btn-danger">
+            <input type="submit" value="{{ 'delete'|trans({},'messages') }}" class="btn btn-danger">
         {{ form_end(delete_form) }}
     </div>
 </div>

@@ -8,7 +8,7 @@
 
 {% block body %}
 <div class="sm-user-crud">
-    <h1>{{ 'user'|trans({},'messages') }}</h1>
+    <h1>{{ 'user'|trans({},'messages') }} - {{ 'action.edit'|trans({},'messages') }}</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}

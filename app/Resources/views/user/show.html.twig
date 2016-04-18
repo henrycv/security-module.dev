@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
 
+{% trans_default_domain 'FOSUserBundle' %}
+
 {% block title %}
     {{ pageTitle }}
 {% endblock %}
@@ -7,7 +9,7 @@
 {% block body %}
 <div class="sm-user-crud">
 
-    <h1>{{ 'user'|trans }}</h1>
+    <h1>{{ 'user'|trans({},'messages') }} - {{ 'view'|trans({},'messages') }}</h1>
 
     <div class="table-responsive">
         <table class="table table-reflow">
@@ -33,8 +35,8 @@
                     <td>{{ user.emailCanonical }}</td>
                 </tr> #}
                 <tr>
-                    <th>{{ 'mit_license'|trans({},'messages') }}</th>
-                    <td>{% if user.enabled %}Yes{% else %}No{% endif %}</td>
+                    <th>{{ 'status.enabled'|trans({},'messages') }}</th>
+                    <td>{% if user.enabled %}{{ 'yes'|trans({},'messages') }}{% else %}{{ 'no'|trans({},'messages') }}{% endif %}</td>
                 </tr>
                 {# <tr>
                     <th>Salt</th>
@@ -50,7 +52,7 @@
                 </tr> #}
                 <tr>
                     <th>{{ 'status.locked'|trans({},'messages') }}</th>
-                    <td>{% if user.locked %}Yes{% else %}No{% endif %}</td>
+                    <td>{% if user.locked %}{{ 'yes'|trans({},'messages') }}{% else %}{{ 'no'|trans({},'messages') }}{% endif %}</td>
                 </tr>
                 {# <tr>
                     <th>Expired</th>

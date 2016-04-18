@@ -19,15 +19,19 @@ class PageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', TextType::class, array('label' => 'Name'))
+            ->add('name', TextType::class,
+                array('label' => 'name', 'translation_domain' => 'messages'))
             ->add('visible', CheckboxType::class, array(
-                'label'    => 'Visible on menu',
+                'label' => 'visible', 'translation_domain' => 'messages',
                 'required' => false,
             ))
-            ->add('url', TextType::class, array('label' => 'URL', 'required' => false))
-            ->add('routeName', TextType::class, array('label' => 'Router Name'))
+            ->add('url', TextType::class, array(
+                'label' => 'url', 'translation_domain' => 'messages',
+                'required' => false))
+            ->add('routeName', TextType::class, array(
+                'label' => 'router_name', 'translation_domain' => 'messages'))
             ->add('pageParentId', EntityType::class, array(
-                'label' => 'Parent Page',
+                'label' => 'parent_page', 'translation_domain' => 'messages',
                 'class' => 'AppBundle:Page',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('p')
@@ -37,6 +41,7 @@ class PageType extends AbstractType
                 'required' => true
             ))
             ->add('actions', EntityType::class, array(
+                'label' => 'actions', 'translation_domain' => 'messages',
                 'class' => 'AppBundle:Action',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('a')

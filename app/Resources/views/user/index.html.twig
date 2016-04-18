@@ -9,13 +9,13 @@
 {% block body %}
 
 <div class="sm-user-crud">
-  <h1>{{ 'users'|trans({},'messages') }}</h1>
+  <h1>{{ 'users'|trans({},'messages') }} - {{ 'listado'|trans({},'messages') }}</h1>
 
   <div class="table-responsive">
       <table class="table table-reflow">
         <thead>
           <tr>
-            <th>#</th>
+            <th>{{ 'id'|trans({},'messages') }}</th>
             <th>{{ 'label.username'|trans({},'messages') }}</th>
             <th class="hide-by-responsive">{{ 'profile.show.email'|trans }}</th>
             <th class="hide-by-responsive">{{ 'status.enabled'|trans({},'messages') }}</th>
@@ -31,7 +31,7 @@
             <td>{{ user.username }}</td>
             <td class="hide-by-responsive">{{ user.email }}</td>
             <td class="hide-by-responsive">{% if user.enabled %}{{ 'yes'|trans({},'messages') }}{% else %}{{ 'no'|trans({},'messages') }}{% endif %}</td>
-            <td class="hide-by-responsive">{% if user.locked %}Yes{% else %}No{% endif %}</td>
+            <td class="hide-by-responsive">{% if user.locked %}{{ 'yes'|trans({},'messages') }}{% else %}{{ 'no'|trans({},'messages') }}{% endif %}</td>
             {# <td class="hide-by-responsive">{{ user.roles }}</td> #}
             <td>
               <div class="item-actions">

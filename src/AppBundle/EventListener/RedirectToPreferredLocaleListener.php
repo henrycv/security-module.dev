@@ -43,6 +43,13 @@ class RedirectToPreferredLocaleListener
     private $locales = array();
 
     /**
+     * List of supported locales.
+     *
+     * @var string[]
+     */
+    private $localesString = array();
+
+    /**
      * @var string
      */
     private $defaultLocale = '';
@@ -60,6 +67,7 @@ class RedirectToPreferredLocaleListener
         $this->translator = $translator;
 
         $this->locales = explode('|', trim($locales));
+        $this->localesString = $locales;
         if (empty($this->locales)) {
             throw new \UnexpectedValueException('The list of supported locales must not be empty.');
         }
@@ -84,9 +92,22 @@ class RedirectToPreferredLocaleListener
     {
         $request = $event->getRequest();
 
-        // Set the translator to FOSUserBundle Login
-        $requestLocale = $request->getLocale();
-        $this->translator->setLocale($requestLocale ? $requestLocale : $request->getSession()->get('_locale'));
+        $hasLocaleInUrl = preg_match(
+            '/\/(es|en|fr|de|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca)$' .
+                '|\/(es|en|fr|de|cs|nl|ru|uk|ro|pt_BR|pl|it|ja|id|ca)\/.*/',
+            $request->getPathInfo()
+        );
+
+        if ($hasLocaleInUrl) {
+            $preferredLanguage = $request->getLocale();
+            $request->getSession()->set('_locale', $request->getLocale());
+        } else {
+            $preferredLanguage = $request->getSession()->get('_locale');
+        }
+        $request->setLocale($preferredLanguage);
+        $request->getPreferredLanguage($this->locales);
+
+        $this->translator->setLocale($preferredLanguage);
 
         // Ignore sub-requests and all URLs but the homepage
         if (!$event->isMasterRequest() || '/' !== $request->getPathInfo()) {
@@ -95,7 +116,7 @@ class RedirectToPreferredLocaleListener
         // Ignore requests from referrers with the same HTTP host in order to prevent
         // changing language for users who possibly already selected it for this application.
         if (0 === stripos($request->headers->get('referer'), $request->getSchemeAndHttpHost())) {
-            // return;
+            return;
         }
 
         $languageOnSession = $request->getSession()->get('_locale');

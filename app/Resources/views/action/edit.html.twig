@@ -2,19 +2,19 @@
 
 {% block body %}
 <div class="sm-user-crud">
-    <h1>Action edit</h1>
+    <h1>{{ 'action'|trans({},'messages') }} - {{ 'action.edit'|trans({},'messages') }}</h1>
 
     {{ form_start(edit_form) }}
         {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" class="btn btn-primary" />
+        <input type="submit" value="{{ 'edit'|trans({},'messages') }}" class="btn btn-primary" />
         <a href="{{ path('action_index') }}" class="btn btn-link">
-            Back to the list
+            {{ 'back_to_list'|trans({},'messages') }}
         </a>
     {{ form_end(edit_form) }}
 
     <div class="delete-button">
         {{ form_start(delete_form) }}
-            <input type="submit" value="Delete" class="btn btn-danger">
+            <input type="submit" value="{{ 'delete'|trans({},'messages') }}" class="btn btn-danger">
         {{ form_end(delete_form) }}
     </div>
 </div>

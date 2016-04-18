@@ -15,12 +15,11 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $session = $request->getSession();
-        $request->getSession()->set('_locale', $request->getLocale());
+        $routeAndPermission = $this->hasPermission($request);
 
         // replace this example code with whatever you need
         return $this->render('default/index.html.twig', array(
-            'pageTitle' => 'Homepage'
+            'pageTitle' => $routeAndPermission['name']
         ));
     }
     /**
@@ -73,8 +72,11 @@ class DefaultController extends Controller
 
         if ($pages) {
             $routeName = $request->get('_route');
+            $hasPermission = false;
             foreach ($pages as $page) {
-                if (stripos($page['routeName'], $routeName) !== false) {
+                if (stripos($page['routeName'], $routeName) !== false
+                    || (strripos($page['url'] && strripos($page['url'], $request->getPathInfo()) !== false))
+                ) {
                     return $page;
                 }
             }

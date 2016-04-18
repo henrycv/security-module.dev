@@ -1,13 +1,13 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="sm-user-crud">
-    <h1>Edit Profile</h1>
+    <h1>{{ 'profile'|trans({},'messages') }} - {{ 'action.edit'|trans({},'messages') }}</h1>
     {{ form_start(form, { 'action': path('fos_user_profile_edit'), 'attr': { 'class': 'fos_user_profile_edit' } }) }}
         {{ form_widget(form) }}
         <div class="delete-button">
             <input type="submit" value="{{ 'profile.edit.submit'|trans }}" class="btn btn-primary" />
             <a href="{{ path('fos_user_profile_show') }}" class="btn btn-link">
-                Back to Profile
+                {{ 'back_to_profile'|trans({},'messages') }}
             </a>
         </div>
     {{ form_end(form) }}
