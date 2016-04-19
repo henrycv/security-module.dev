@@ -1,6 +1,6 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
-
 {% trans_default_domain 'FOSUserBundle' %}
+{% spaceless %}
 
 {% block fos_user_content %}
     <div class="container login-page">
@@ -68,3 +68,5 @@
     </div>
 
 {% endblock fos_user_content %}
+
+{% endspaceless %}

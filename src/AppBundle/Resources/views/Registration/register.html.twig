@@ -1,4 +1,5 @@
 {% extends "FOSUserBundle::layout.html.twig" %}
+{% spaceless %}
 
 {% block fos_user_content %}
 <div class="sm-user-crud">
@@ -6,3 +7,5 @@
     {% include "FOSUserBundle:Registration:register_content.html.twig" %}
 </div>
 {% endblock fos_user_content %}
+
+{% endspaceless %}

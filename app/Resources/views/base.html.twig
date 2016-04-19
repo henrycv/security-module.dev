@@ -28,6 +28,7 @@
                    <ul></ul>
                 </div>
 
+                {% spaceless %}
                 <div id="container-dropdown-language" class="hide">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         {{ localeByCode(app.request.locale) }}
@@ -42,6 +43,7 @@
                         {% endfor %}
                     </ul>
                 </div>
+                {% endspaceless %}
             </header>
         </div>
 
