@@ -391,23 +391,23 @@
             </trans-unit>
             <trans-unit id="listado">
                 <source>listado</source>
-                <target>Listado</target>
+                <target>List</target>
             </trans-unit>
             <trans-unit id="view">
                 <source>view</source>
-                <target>Vista</target>
+                <target>View</target>
             </trans-unit>
             <trans-unit id="page">
                 <source>page</source>
-                <target>Página</target>
+                <target>Page</target>
             </trans-unit>
             <trans-unit id="pages">
                 <source>pages</source>
-                <target>Páginas</target>
+                <target>Pages</target>
             </trans-unit>
             <trans-unit id="parent_page">
                 <source>parent_page</source>
-                <target>Página padre</target>
+                <target>Parent page</target>
             </trans-unit>
             <trans-unit id="url">
                 <source>url</source>
@@ -415,7 +415,7 @@
             </trans-unit>
             <trans-unit id="router_name">
                 <source>router_name</source>
-                <target>Nombre de ruteador</target>
+                <target>Router name</target>
             </trans-unit>
             <trans-unit id="visible">
                 <source>visible</source>
@@ -423,19 +423,19 @@
             </trans-unit>
             <trans-unit id="action">
                 <source>action</source>
-                <target>Acción</target>
+                <target>Action</target>
             </trans-unit>
             <trans-unit id="create_new_alt">
                 <source>create_new_alt</source>
-                <target>Crear una nueva</target>
+                <target>Create new </target>
             </trans-unit>
             <trans-unit id="profile">
                 <source>profile</source>
-                <target>Perfil</target>
+                <target>Profile</target>
             </trans-unit>
             <trans-unit id="back_to_profile">
                 <source>back_to_profile</source>
-                <target>Regresar al Perfil</target>
+                <target>Back to profile</target>
             </trans-unit>
             <!-- END - Security Module -->
 
