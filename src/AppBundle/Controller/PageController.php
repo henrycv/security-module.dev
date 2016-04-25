@@ -56,6 +56,13 @@ class PageController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            if (isset($request->request->get('page')['visible'])
+                && $request->request->get('page')['visible'] == 1
+            ) {
+                $page->setVisible(1);
+            } else {
+                $page->setVisible(0);
+            }
             $page->setPageParentId($request->request->get('page')['pageParentId'] * 1);
             $em = $this->getDoctrine()->getManager();
             $em->persist($page);
@@ -229,9 +236,8 @@ class PageController extends Controller
         $em->flush();
     }
 
-    private function hasPermission(Request $request, $alias = null)
+    private function hasPermission(Request $request)
     {
-        $hasPermission = false;
         $pages = $this->getDoctrine()
             ->getRepository('AppBundle:Page')
             ->findAllByUser(
@@ -241,12 +247,14 @@ class PageController extends Controller
             );
 
         if ($pages) {
-            $urlPage = $request->getPathInfo();
             $routeName = $request->get('_route');
-            foreach ($pages as $value) {
-                if ($value['routeName'] === $routeName
-                    || stripos($value['url'], $alias) !== false) {
-                    return $value;
+
+            foreach ($pages as $page) {
+                if (stripos($page['routeName'], $routeName) !== false
+                    || ($page['url']
+                        && strripos($page['url'], $request->getPathInfo()) !== false)
+                ) {
+                    return $page;
                 }
             }
         }

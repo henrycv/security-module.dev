@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Action;
 use AppBundle\Form\ActionType;
 use AppBundle\Entity\RoleAction;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Action controller.
@@ -23,8 +24,12 @@ class ActionController extends Controller
      * @Route("/", name="action_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        if (!$this->hasPermission($request)) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $actions = $em->getRepository('AppBundle:Action')->findAll();
@@ -42,6 +47,10 @@ class ActionController extends Controller
      */
     public function newAction(Request $request)
     {
+        if (!$this->hasPermission($request)) {
+            throw new AccessDeniedException();
+        }
+
         $action = new Action();
         if ($request->isMethod('POST')) {
             $action->setRoles($request->request->get('action')['roles']);
@@ -72,8 +81,12 @@ class ActionController extends Controller
      * @Route("/{id}", name="action_show")
      * @Method("GET")
      */
-    public function showAction(Action $action)
+    public function showAction(Request $request, Action $action)
     {
+        if (!$this->hasPermission($request)) {
+            throw new AccessDeniedException();
+        }
+
         $deleteForm = $this->createDeleteForm($action);
 
         return $this->render('action/show.html.twig', array(
@@ -90,6 +103,10 @@ class ActionController extends Controller
      */
     public function editAction(Request $request, Action $action)
     {
+        if (!$this->hasPermission($request)) {
+            throw new AccessDeniedException();
+        }
+
         $deleteForm = $this->createDeleteForm($action);
         if ($request->isMethod('POST')) {
             $action->setRoles($request->request->get('action')['roles']);
@@ -187,5 +204,31 @@ class ActionController extends Controller
             $em->persist($roleAction);
         }
         $em->flush();
+    }
+
+    private function hasPermission(Request $request)
+    {
+        $pages = $this->getDoctrine()
+            ->getRepository('AppBundle:Page')
+            ->findAllByUser(
+                $this->get('security.token_storage')->getToken()->getUser(),
+                $this->container->get('router'),
+                $request
+            );
+
+        if ($pages) {
+            $routeName = $request->get('_route');
+
+            foreach ($pages as $page) {
+                if (stripos($page['routeName'], $routeName) !== false
+                    || ($page['url']
+                        && strripos($page['url'], $request->getPathInfo()) !== false)
+                ) {
+                    return $page;
+                }
+            }
+        }
+
+        return false;
     }
 }

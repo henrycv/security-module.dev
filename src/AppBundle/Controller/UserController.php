@@ -235,30 +235,6 @@ class UserController extends Controller
         ;
     }
 
-    private function hasPermission(Request $request, $alias = null)
-    {
-        $hasPermission = false;
-        $pages = $this->getDoctrine()
-            ->getRepository('AppBundle:Page')
-            ->findAllByUser(
-                $this->get('security.token_storage')->getToken()->getUser(),
-                $this->container->get('router'),
-                $request
-            );
-
-        if ($pages) {
-            $routeName = $request->get('_route');
-            foreach ($pages as $value) {
-                if ($value['routeName'] === $routeName
-                    || stripos($value['url'], $alias) !== false) {
-                    return $value;
-                }
-            }
-        }
-
-        return false;
-    }
-
     private function saveUserRoles($userData, $user)
     {
         $userRoles = $this->getDoctrine()
@@ -286,5 +262,31 @@ class UserController extends Controller
     private function getCrudPermissions()
     {
 
+    }
+
+    private function hasPermission(Request $request)
+    {
+        $pages = $this->getDoctrine()
+            ->getRepository('AppBundle:Page')
+            ->findAllByUser(
+                $this->get('security.token_storage')->getToken()->getUser(),
+                $this->container->get('router'),
+                $request
+            );
+
+        if ($pages) {
+            $routeName = $request->get('_route');
+
+            foreach ($pages as $page) {
+                if (stripos($page['routeName'], $routeName) !== false
+                    || ($page['url']
+                        && strripos($page['url'], $request->getPathInfo()) !== false)
+                ) {
+                    return $page;
+                }
+            }
+        }
+
+        return false;
     }
 }

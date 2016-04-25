@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Role;
 use AppBundle\Form\RoleType;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * Role controller.
@@ -22,8 +23,12 @@ class RoleController extends Controller
      * @Route("/", name="role_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
+        if (!$this->hasPermission($request)) {
+            throw new AccessDeniedException();
+        }
+
         $em = $this->getDoctrine()->getManager();
 
         $roles = $em->getRepository('AppBundle:Role')->findAll();
@@ -41,6 +46,10 @@ class RoleController extends Controller
      */
     public function newAction(Request $request)
     {
+        if (!$this->hasPermission($request)) {
+            throw new AccessDeniedException();
+        }
+
         $role = new Role();
         $form = $this->createForm('AppBundle\Form\RoleType', $role);
         $form->handleRequest($request);
@@ -65,8 +74,12 @@ class RoleController extends Controller
      * @Route("/{id}", name="role_show")
      * @Method("GET")
      */
-    public function showAction(Role $role)
+    public function showAction(Request $request, Role $role)
     {
+        if (!$this->hasPermission($request)) {
+            throw new AccessDeniedException();
+        }
+
         $deleteForm = $this->createDeleteForm($role);
 
         return $this->render('role/show.html.twig', array(
@@ -83,6 +96,10 @@ class RoleController extends Controller
      */
     public function editAction(Request $request, Role $role)
     {
+        if (!$this->hasPermission($request)) {
+            throw new AccessDeniedException();
+        }
+
         $deleteForm = $this->createDeleteForm($role);
         $editForm = $this->createForm('AppBundle\Form\RoleType', $role);
         $editForm->handleRequest($request);
@@ -92,7 +109,7 @@ class RoleController extends Controller
             $em->persist($role);
             $em->flush();
 
-            return $this->redirectToRoute('role_index');
+            return $this->redirectToRoute('role_show', array('id' => $role->getIdRole()));
         }
 
         return $this->render('role/edit.html.twig', array(
@@ -136,5 +153,31 @@ class RoleController extends Controller
             ->setMethod('DELETE')
             ->getForm()
         ;
+    }
+
+    private function hasPermission(Request $request)
+    {
+        $pages = $this->getDoctrine()
+            ->getRepository('AppBundle:Page')
+            ->findAllByUser(
+                $this->get('security.token_storage')->getToken()->getUser(),
+                $this->container->get('router'),
+                $request
+            );
+
+        if ($pages) {
+            $routeName = $request->get('_route');
+
+            foreach ($pages as $page) {
+                if (stripos($page['routeName'], $routeName) !== false
+                    || ($page['url']
+                        && strripos($page['url'], $request->getPathInfo()) !== false)
+                ) {
+                    return $page;
+                }
+            }
+        }
+
+        return false;
     }
 }

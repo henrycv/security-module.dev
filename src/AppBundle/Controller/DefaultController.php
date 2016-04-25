@@ -61,7 +61,6 @@ class DefaultController extends Controller
 
     private function hasPermission(Request $request)
     {
-        $hasPermission = false;
         $pages = $this->getDoctrine()
             ->getRepository('AppBundle:Page')
             ->findAllByUser(
@@ -72,7 +71,7 @@ class DefaultController extends Controller
 
         if ($pages) {
             $routeName = $request->get('_route');
-            $hasPermission = false;
+
             foreach ($pages as $page) {
                 if (stripos($page['routeName'], $routeName) !== false
                     || ($page['url']
