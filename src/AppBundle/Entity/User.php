@@ -34,7 +34,6 @@ class User extends BaseUser
     }
 
     /**
-     * @Assert\NotBlank()
      * @Assert\Length(max=4096)
      */
     protected $plainPassword;
