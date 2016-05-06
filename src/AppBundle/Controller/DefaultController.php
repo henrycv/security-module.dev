@@ -59,6 +59,58 @@ class DefaultController extends Controller
         return new Response(json_encode($result));
     }
 
+    /**
+     * @Route("/testmail", name="testmail")
+     */
+    public function testmailAction(Request $request)
+    {
+phpinfo();die;
+        $arrayTo = array();
+        for ($i=1; $i <= 2000; $i++) {
+            // $arrayTo[] = 'user.test.job.one+' . $i . '@gmail.com';
+        }
+        $arrayTo[] = 'user.test.job.one@gmail.com';
+        $arrayTo[] = 'booshoe@mailinator.com';
+        $arrayTo[] = 'zippitysir@mailinator.com ';
+
+        $transport = \Swift_MailTransport::newInstance();
+        $mailer = \Swift_Mailer::newInstance($transport);
+
+        foreach ($arrayTo as $i => $mail) {
+            // Create a message
+            $message = \Swift_Message::newInstance('Test mail ' . date('h:i:s'))
+                ->setFrom(array(
+                    'john@doe.com' => 'John Doe'
+                ))
+                ->setTo(
+                    $mail
+                )
+                ->setCharset('UTF-8')
+                ->setContentType("text/html")
+                ->setBody(
+                    '<h1>
+                        Test body: Iñtërnâtiônàlizætiøn
+                    </h1><br />
+                    Test mail ' . date('h:i:s')
+                )
+            ;
+
+        // Send the message
+        $result = $mailer->send($message);
+var_dump(array(
+    'testmailAction',
+    // $mailer,
+    $mail,
+    $result,
+));
+        }
+// die;
+        // replace this example code with whatever you need
+        return $this->render('default/index.html.twig', array(
+            'pageTitle' => 'testmail'
+        ));
+    }
+
     private function hasPermission(Request $request)
     {
         $pages = $this->getDoctrine()

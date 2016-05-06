@@ -3,9 +3,11 @@
 {% spaceless %}
 
 {% block fos_user_content %}
-<p>
-{{ 'resetting.check_email'|trans({'%email%': email}) }}
-</p>
+<div class="container login-page">
+    <p class="lead">
+        {{ 'resetting.check_email'|trans({'%email%': email}) }}
+    </p>
+</div>
 {% endblock %}
 
 {% endspaceless %}
