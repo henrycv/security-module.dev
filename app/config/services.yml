@@ -14,6 +14,12 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
+    app.assign_default_role_after_register:
+        class: AppBundle\EventListener\RegisterListener
+        arguments: [@router]
+        tags:
+            - { name: kernel.event_subscriber }
+
     # These are the Twig extensions that create new filters and functions for
     # using them in the templates
     app.twig.app_extension:

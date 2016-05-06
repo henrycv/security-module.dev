@@ -1,11 +1,32 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-    {{ form_widget(form) }}
-    <div>
-        <input type="submit" value="{{ 'registration.submit'|trans }}"  class="btn btn-primary"/>
-        <a href="{{ path('homepage') }}" class="btn btn-link">
-            Cancel
-        </a>
+<div class="container login-page">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel panel-login">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <a href="{{ path('fos_user_security_login') }}" id="login-form-link">
+                                {{ 'security.login.submit'|trans }}
+                            </a>
+                        </div>
+                        <div class="col-xs-6">
+                            <a href="{{ path('fos_user_registration_register') }}" class="active" id="register-form-link">
+                                {{ 'registration.submit'|trans }}
+                            </a>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                                {{ include('AppBundle:Registration:registerform.html.twig') }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-{{ form_end(form) }}
+</div>
