@@ -15,8 +15,8 @@ services:
             - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
     app.assign_default_role_after_register:
-        class: AppBundle\EventListener\RegisterListener
-        arguments: [@router]
+        class: AppBundle\EventListener\RegistrationListener
+        arguments: [@router, @doctrine.orm.entity_manager]
         tags:
             - { name: kernel.event_subscriber }
 

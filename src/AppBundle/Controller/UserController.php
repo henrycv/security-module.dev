@@ -25,6 +25,11 @@ class UserController extends Controller
     const FLAG_OLD_PASS = '-do-not-update-pass-on-edit-action-';
 
     /**
+     * Constant to refer the default Role for new users
+     */
+    const DEFAULT_ROLE_USERS = 3;
+
+    /**
      * Lists all User entities.
      *
      * @Route("/", name="user_index")
